@@ -11,8 +11,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import gandalf from "../img/GandalfV2.svg";
-import ccv1 from "../img/ccv6.png";
+import gandalf from "../img/GandalfV2.svg";
+// import ccv1 from "../img/ccv6.png";
 import LoginSignup from "../Components/LoginSignup";
 import AppContext from "../Context/AppContext";
 import { Link } from "react-router-dom";
@@ -79,7 +79,7 @@ const Navbar = () => {
               <Box
                 sx={{ display: { xs: "none", md: "flex", maxHeight: "4rem" } }}
               >
-                <img src={ccv1} className="gandalf" alt="Magic" />
+                <img src={gandalf} className="gandalf" alt="Magic" />
               </Box>
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
@@ -138,7 +138,7 @@ const Navbar = () => {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
               >
-                <img src={ccv1} className="gandalf" alt="Magic" />
+                <img src={gandalf} className="gandalf" alt="Magic" />
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
@@ -228,7 +228,7 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
-                    <LoginSignup />
+                    <LoginSignup closeUser={handleCloseUserMenu} />
                   </>
                 )}
               </Box>

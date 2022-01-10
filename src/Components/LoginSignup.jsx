@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import AppContext from "../Context/AppContext";
 import ModalNav from "./ModalNav";
 
-export default function FormDialog() {
+export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [signupEmail, setSignupEmail] = React.useState("");
   const [signupPassword, setSignupPassword] = React.useState("");
@@ -21,6 +21,7 @@ export default function FormDialog() {
 
   const appContext = React.useContext(AppContext);
   const { state, setState, register, login } = appContext;
+  const { closeUser } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -87,6 +88,7 @@ export default function FormDialog() {
       };
       try {
         await login(loginObject);
+        closeUser();
       } catch (err) {
         // Error response should be coming from useUser
       }

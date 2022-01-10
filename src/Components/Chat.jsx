@@ -72,17 +72,17 @@ const Chat = () => {
         <Box
           sx={{
             width: "50%",
-            borderRadius: 3,
+            borderRadius: "6px 6px 0 0",
             boxShadow: 3,
             p: 4,
-            m: 4,
+            mt: 4,
             flexDirection: "row",
             flexGrow: 1,
             display: { xs: "none", md: "flex" },
             height: 400,
             overflow: "scroll",
           }}
-          bgColor="#fff"
+          bgcolor="#fff"
           className="scrollhost"
         >
           <Box sx={{ m: 1, width: "100%" }}>
@@ -133,10 +133,10 @@ const Chat = () => {
 
         <Box
           sx={{
-            borderRadius: 3,
+            borderRadius: "6px 6px 0 0",
             boxShadow: 3,
             p: 4,
-            m: 4,
+            mt: 4,
             flexDirection: "row",
             flexGrow: 1,
             display: { xs: "flex", md: "none" },
@@ -144,7 +144,7 @@ const Chat = () => {
             height: 400,
             overflow: "scroll",
           }}
-          bgColor="#fff"
+          bgcolor="#fff"
           className="scrollhost"
         >
           <Box sx={{ m: 1, width: "100%" }}>
@@ -171,16 +171,16 @@ const Chat = () => {
           </Box>
         </Box>
 
-        <Box sx={{ mt: 1, fixed: true }}>
+        <Box sx={{ fixed: true, width: { xs: "100%", md: "50%" } }}>
           <TextareaAutosize
-            className="form-control"
+            className="form-control border-2 border-dark"
             maxRows={6}
             aria-label="minimum height"
             minRows={2}
             id="input-with-icon-textfield"
             placeholder="Enter your message here to begin chatting!"
             variant="standard"
-            sx={{ m: 1, borderRadius: 6 }}
+            sx={{ m: 1 }}
             onChange={handleMessage}
             value={userMessage}
           />
