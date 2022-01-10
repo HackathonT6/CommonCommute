@@ -21,6 +21,8 @@ const Chat = () => {
   const { userId, setState, displayToast } = appContext;
   const [userMessage, setUserMessage] = React.useState("");
   const [chatMessages, setChatMessages] = React.useState([]);
+  const scrollRef = React.useRef(null);
+  const mobileScrollRef = React.useRef(null);
 
   React.useEffect(() => {
     let socket = connectChatServer();
@@ -33,6 +35,18 @@ const Chat = () => {
       socket.disconnect();
     };
   }, []);
+
+  React.useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behaviour: "smooth" });
+    }
+  }, [chatMessages]);
+
+  React.useEffect(() => {
+    if (mobileScrollRef.current) {
+      mobileScrollRef.current.scrollIntoView({ behaviour: "smooth" });
+    }
+  }, [chatMessages]);
 
   const chatToast = () => {
     setState((prev) => ({ ...prev, toastText: "Chatty Toast" }));
@@ -47,6 +61,7 @@ const Chat = () => {
     const chatMessage = `${userId}: ${userMessage}`;
     let socket = connectChatServer();
     socket.emit("message", chatMessage);
+    setUserMessage("");
   };
 
   return (
@@ -64,8 +79,11 @@ const Chat = () => {
             flexDirection: "row",
             flexGrow: 1,
             display: { xs: "none", md: "flex" },
+            height: 400,
+            overflow: "scroll",
           }}
           bgColor="#fff"
+          className="scrollhost"
         >
           <Box sx={{ m: 1, width: "100%" }}>
             <div>
@@ -86,8 +104,9 @@ const Chat = () => {
                   </Box>
                 );
               })}
+              <span ref={scrollRef} />
             </div>
-            <Box sx={{ mt: 5 }}>
+            {/* <Box sx={{ mt: 5 }}>
               <TextareaAutosize
                 className="form-control"
                 maxRows={6}
@@ -108,7 +127,7 @@ const Chat = () => {
               >
                 Send
               </Button>
-            </Box>
+            </Box> */}
           </Box>
         </Box>
 
@@ -121,8 +140,12 @@ const Chat = () => {
             flexDirection: "row",
             flexGrow: 1,
             display: { xs: "flex", md: "none" },
+            minWidth: "90%",
+            height: 400,
+            overflow: "scroll",
           }}
           bgColor="#fff"
+          className="scrollhost"
         >
           <Box sx={{ m: 1, width: "100%" }}>
             <div>
@@ -136,35 +159,39 @@ const Chat = () => {
                       borderRadius: 3,
                       boxShadow: 3,
                     }}
+                    bgcolor="#6500c3"
+                    color="#fff"
                   >
                     <div>{message}</div>
                   </Box>
                 );
               })}
+              <span ref={mobileScrollRef} />
             </div>
-            <Box sx={{ mt: 5 }}>
-              <TextareaAutosize
-                className="form-control"
-                maxRows={6}
-                aria-label="minimum height"
-                minRows={2}
-                id="input-with-icon-textfield"
-                placeholder="Enter your message here to begin chatting!"
-                variant="standard"
-                sx={{ m: 1, borderRadius: 6 }}
-                onChange={handleMessage}
-                value={userMessage}
-              />
-              <Button
-                variant="contained"
-                color="success"
-                sx={{ m: 1 }}
-                onClick={handleSend}
-              >
-                Send
-              </Button>
-            </Box>
           </Box>
+        </Box>
+
+        <Box sx={{ mt: 1, fixed: true }}>
+          <TextareaAutosize
+            className="form-control"
+            maxRows={6}
+            aria-label="minimum height"
+            minRows={2}
+            id="input-with-icon-textfield"
+            placeholder="Enter your message here to begin chatting!"
+            variant="standard"
+            sx={{ m: 1, borderRadius: 6 }}
+            onChange={handleMessage}
+            value={userMessage}
+          />
+          <Button
+            variant="contained"
+            color="success"
+            sx={{ m: 1 }}
+            onClick={handleSend}
+          >
+            Send
+          </Button>
         </Box>
         <div onClick={chatToast}>
           Click me to trigger a custom Toast for the Chat
