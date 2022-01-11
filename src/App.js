@@ -6,6 +6,7 @@ import useUser from "./Hooks/useUser";
 import useToast from "./Hooks/useToast";
 import AppContext from "./Context/AppContext";
 import Toast from "./Components/Toast";
+import Landing from "./Components/Landing";
 
 export default function App() {
   const { register, login, logout, userId } = useUser();
@@ -31,7 +32,7 @@ export default function App() {
     >
       <div className="App">
         <Navbar />
-        <Outlet />
+        {userId ? <Outlet /> : <Landing />}
         <Toast
           toastText={state.toastText}
           severity={state.toastSeverity}

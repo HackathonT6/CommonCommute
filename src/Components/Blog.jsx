@@ -3,7 +3,7 @@ import AppContext from "../Context/AppContext";
 
 const Blog = () => {
   const appContext = React.useContext(AppContext);
-  const { state, setState, displayToast, userId } = appContext;
+  const { setState, displayToast, userId } = appContext;
   const blogToast = () => {
     setState((prev) => ({ ...prev, toastText: "A profile-related Toast" }));
     displayToast();

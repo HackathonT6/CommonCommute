@@ -106,28 +106,6 @@ const Chat = () => {
               })}
               <span ref={scrollRef} />
             </div>
-            {/* <Box sx={{ mt: 5 }}>
-              <TextareaAutosize
-                className="form-control"
-                maxRows={6}
-                aria-label="minimum height"
-                minRows={1}
-                id="input-with-icon-textfield"
-                placeholder="Enter your message here to begin chatting!"
-                variant="standard"
-                sx={{ m: 1, borderRadius: 6 }}
-                onChange={handleMessage}
-                value={userMessage}
-              />
-              <Button
-                variant="contained"
-                color="success"
-                sx={{ m: 1 }}
-                onClick={handleSend}
-              >
-                Send
-              </Button>
-            </Box> */}
           </Box>
         </Box>
 
@@ -140,7 +118,7 @@ const Chat = () => {
             flexDirection: "row",
             flexGrow: 1,
             display: { xs: "flex", md: "none" },
-            minWidth: "90%",
+            minWidth: "100%",
             height: 400,
             overflow: "scroll",
           }}

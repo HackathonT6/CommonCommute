@@ -11,8 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import gandalf from "../img/GandalfV2.svg";
-// import ccv1 from "../img/ccv6.png";
+import together from "../img/togetherv2.png";
 import LoginSignup from "../Components/LoginSignup";
 import AppContext from "../Context/AppContext";
 import { Link } from "react-router-dom";
@@ -49,10 +48,6 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  const pages = [
-    { label: "Home", url: "" },
-    { label: "About", url: "/about" },
-  ];
   const settings = [
     { label: "Profile", url: "/profile" },
     { label: "Logout", url: "" },
@@ -76,10 +71,8 @@ const Navbar = () => {
         <AppBar position="static" color="secondary">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <Box
-                sx={{ display: { xs: "none", md: "flex", maxHeight: "4rem" } }}
-              >
-                <img src={gandalf} className="gandalf" alt="Magic" />
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <img src={together} className="together" alt="Magic" />
               </Box>
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
@@ -110,17 +103,11 @@ const Navbar = () => {
                     display: { xs: "block", md: "none" },
                   }}
                 >
-                  {pages.map((page) => (
-                    <Link
-                      to={page.url}
-                      style={{ textDecoration: "none" }}
-                      key={page.label}
-                    >
-                      <MenuItem onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">{page.label}</Typography>
-                      </MenuItem>
-                    </Link>
-                  ))}
+                  <Link to="" style={{ textDecoration: "none" }}>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">Home</Typography>
+                    </MenuItem>
+                  </Link>
                   {userId ? (
                     <>
                       <Link to="chat" style={{ textDecoration: "none" }}>
@@ -138,25 +125,20 @@ const Navbar = () => {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
               >
-                <img src={gandalf} className="gandalf" alt="Magic" />
+                <img src={together} className="together" alt="Magic" />
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {pages.map((page) => (
-                  <Link
-                    to={page.url}
-                    style={{ textDecoration: "none" }}
-                    key={page.label}
+                <Link to="" style={{ textDecoration: "none" }}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, mx: 1, color: "white", display: "block" }}
+                    variant="contained"
+                    color="success"
                   >
-                    <Button
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, mx: 1, color: "white", display: "block" }}
-                      variant="contained"
-                      color="success"
-                    >
-                      {page.label}
-                    </Button>
-                  </Link>
-                ))}
+                    Home
+                  </Button>
+                </Link>
+
                 {userId ? (
                   <>
                     <Link to="chat" style={{ textDecoration: "none" }}>
@@ -208,6 +190,7 @@ const Navbar = () => {
                         <MenuItem
                           key={setting.label}
                           onClick={handleCloseNavMenu}
+                          id={setting.label}
                         >
                           <Link
                             to={setting.url}
