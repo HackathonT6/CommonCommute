@@ -7,7 +7,6 @@ const AutoComplete = () => {
   const [destination, setDestination] = React.useState("");
   const [searchObject, setSearchObject] = React.useState({
     versionNumber: 2,
-    ext: "json",
     language: "en-US",
     limit: 10,
   });

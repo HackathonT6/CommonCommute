@@ -3,6 +3,7 @@ import AppContext from "../Context/AppContext";
 import { TextField, MenuItem, Box, Button, Typography } from "@mui/material";
 import AutoComplete from "../Components/AutoComplete";
 import TripDateSelect from "../Components/TripDateSelect";
+import DestinationInterests from "../Components/DestinationInterests";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -81,6 +82,7 @@ const Home = () => {
                 </MenuItem>
               ))}
             </TextField>
+            <DestinationInterests />
             <Button
               id="appButton"
               color="primary"

@@ -17,28 +17,27 @@ const TripDateSelect = () => {
   const handleEndChange = (newValue) => {
     setEndDate(newValue);
   };
+
   return (
     <>
       <Typography align="center" variant="h5" gutterBottom>
         Please let us know the dates you will be available
       </Typography>
       <LocalizationProvider dateAdapter={DateAdapter}>
-        <Box sx={{ m: 1 }} component="span">
+        <Box sx={{ width: "100%" }}>
           <MobileDatePicker
             label="I am available from"
             inputFormat="MM/dd/yyyy"
             value={startDate}
             onChange={handleStartChange}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} sx={{ m: 1 }} />}
           />
-        </Box>
-        <Box sx={{ m: 1 }} component="span">
           <MobileDatePicker
             label="I am available until"
             inputFormat="MM/dd/yyyy"
             value={endDate}
             onChange={handleEndChange}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} sx={{ m: 1 }} />}
           />
         </Box>
       </LocalizationProvider>
