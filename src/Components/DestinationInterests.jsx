@@ -4,7 +4,6 @@ import {
   Box,
   TextField,
   Checkbox,
-  FormGroup,
   FormControl,
   FormLabel,
   FormControlLabel,

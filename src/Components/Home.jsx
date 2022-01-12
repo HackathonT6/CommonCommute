@@ -3,13 +3,14 @@ import AppContext from "../Context/AppContext";
 import { TextField, MenuItem, Box, Button, Typography } from "@mui/material";
 import AutoComplete from "../Components/AutoComplete";
 import TripDateSelect from "../Components/TripDateSelect";
+import ModeOfTransportation from "../Components/ModeOfTransportation";
 import DestinationInterests from "../Components/DestinationInterests";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const validationSchema = yup.object({
-  modeOfT: yup.string("Enter your pet type").required("Pet type is required"),
-});
+// const validationSchema = yup.object({
+//   modeOfT: yup.string("Enter your pet type").required("Pet type is required"),
+// });
 
 const Home = () => {
   const appContext = React.useContext(AppContext);
@@ -20,38 +21,15 @@ const Home = () => {
     displayToast();
   };
 
-  const modeOfTArray = [
-    {
-      value: "Scooter",
-      label: "Scooter",
-    },
-    {
-      value: "Bus",
-      label: "Bus",
-    },
-    {
-      value: "Train",
-      label: "Train",
-    },
-    {
-      value: "Car",
-      label: "Car",
-    },
-    {
-      value: "Taxi",
-      label: "Taxi",
-    },
-  ];
-
-  const formik = useFormik({
-    initialValues: {
-      modeOfT: "Scooter",
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+  // const formik = useFormik({
+  //   initialValues: {
+  //     modeOfT: "Scooter",
+  //   },
+  //   validationSchema: validationSchema,
+  //   onSubmit: (values) => {
+  //     alert(JSON.stringify(values, null, 2));
+  //   },
+  // });
 
   return (
     <>
@@ -61,38 +39,17 @@ const Home = () => {
         <Box sx={{ my: 3, width: "85%" }}>
           <AutoComplete />
           <TripDateSelect />
-          <Typography align="center" variant="h5" gutterBottom sx={{ mt: 1 }}>
-            How do you plan to get around?
-          </Typography>
-          <form onSubmit={formik.handleSubmit}>
-            <TextField
-              id="modeOfT"
-              select
-              name="modeOfT"
-              label="Mode of Transport"
-              value={formik.values.modeOfT}
-              onChange={formik.handleChange}
-              error={formik.touched.modeOfT && Boolean(formik.errors.modeOfT)}
-              helperText={formik.touched.modeOfT && formik.errors.modeOfT}
-              sx={{ m: 1, width: "100%" }}
-            >
-              {modeOfTArray.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <DestinationInterests />
-            <Button
-              id="appButton"
-              color="primary"
-              variant="contained"
-              fullWidth
-              type="submit"
-            >
-              Submit
-            </Button>
-          </form>
+          <ModeOfTransportation />
+          <DestinationInterests />
+          <Button
+            id="appButton"
+            color="primary"
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
+            Submit
+          </Button>
         </Box>
         <div onClick={homeToast}>Click me for custom home-page toast!</div>
       </div>
