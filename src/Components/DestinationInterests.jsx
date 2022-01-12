@@ -2,29 +2,32 @@ import React from "react";
 import {
   Typography,
   Box,
-  TextField,
   Checkbox,
   FormControl,
   FormLabel,
   FormControlLabel,
 } from "@mui/material";
 
-const DestinationInterests = () => {
-  const [state, setState] = React.useState({
-    museums: false,
-    restaurants: false,
-    parks: false,
-    livemusic: false,
-    festivals: false,
-    gyms: false,
-  });
-  const { museums, restaurants, parks, livemusic, festivals, gyms } = state;
+const DestinationInterests = (props) => {
+  const {
+    museums,
+    restaurants,
+    parks,
+    livemusic,
+    festivals,
+    gyms,
+    setFormObject,
+  } = props;
 
   const handleChange = (event) => {
-    setState({
-      ...state,
+    // setFormObject({
+    //   ...props,
+    //   [event.target.name]: event.target.checked,
+    // });
+    setFormObject((prev) => ({
+      ...prev,
       [event.target.name]: event.target.checked,
-    });
+    }));
   };
 
   return (

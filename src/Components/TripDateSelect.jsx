@@ -5,17 +5,14 @@ import MobileDatePicker from "@mui/lab/MobileDatePicker";
 // import {LocalizationProvider, DesktopDatePicker, DateAdapter } from "@mui/lab"
 import { Typography, Box, TextField } from "@mui/material";
 
-const TripDateSelect = () => {
-  const [startDate, setStartDate] = React.useState(
-    new Date("2021-12-16T21:11:54")
-  );
-  const [endDate, setEndDate] = React.useState(new Date("2021-12-25T21:11:54"));
+const TripDateSelect = (props) => {
+  const { startDate, endDate, setFormObject } = props;
 
   const handleStartChange = (newValue) => {
-    setStartDate(newValue);
+    setFormObject((prev) => ({ ...prev, startDate: newValue }));
   };
   const handleEndChange = (newValue) => {
-    setEndDate(newValue);
+    setFormObject((prev) => ({ ...prev, endDate: newValue }));
   };
 
   return (

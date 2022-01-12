@@ -3,7 +3,8 @@ import { Box, TextField, Autocomplete, Typography } from "@mui/material";
 import _debounce from "lodash/debounce";
 import axios from "axios";
 
-const AutoComplete = () => {
+const AutoComplete = (props) => {
+  const { destinationSelection, setFormObject } = props;
   const [destination, setDestination] = React.useState("");
   const [searchObject, setSearchObject] = React.useState({
     versionNumber: 2,
@@ -11,9 +12,6 @@ const AutoComplete = () => {
     limit: 10,
   });
   const [options, setOptions] = React.useState([]);
-  const [destinationSelection, setDestinationSelection] = React.useState(
-    options[0]
-  );
 
   const handleDebounceFunction = async (inputValue) => {
     try {
@@ -57,7 +55,10 @@ const AutoComplete = () => {
         sx={{ m: 1 }}
         value={destinationSelection}
         onChange={(event, newValue) => {
-          setDestinationSelection(newValue);
+          setFormObject((prev) => ({
+            ...prev,
+            destinationSelection: newValue,
+          }));
         }}
         options={options}
         autoHighlight

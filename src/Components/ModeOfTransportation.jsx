@@ -1,8 +1,8 @@
 import React from "react";
 import { Typography, Box, TextField, MenuItem } from "@mui/material";
 
-const ModeOfTransporation = () => {
-  const [modeTransportation, setModeTransportation] = React.useState("Scooter");
+const ModeOfTransporation = (props) => {
+  const { modeTransportation, setFormObject } = props;
   const modeOfTArray = [
     {
       value: "Scooter",
@@ -26,7 +26,7 @@ const ModeOfTransporation = () => {
     },
   ];
   const handleModeChange = (e) => {
-    setModeTransportation(e.target.value);
+    setFormObject((prev) => ({ ...prev, modeTransportation: e.target.value }));
   };
   return (
     <>
