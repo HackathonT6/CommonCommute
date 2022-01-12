@@ -7,20 +7,22 @@ import App from "./App";
 import Home from "./Components/Home";
 import Blog from "./Components/Blog";
 import Chat from "./Components/Chat";
+import Preferences from "./Components/Preferences";
 
 ReactDOM.render(
-  // <React.StrictMode>
-  <Router>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<Home />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="profile" element={<Blog />} />
-        <Route path="admin" element={<Blog />} />
-        <Route path="chat" element={<Chat />} />
-      </Route>
-    </Routes>
-  </Router>,
-  // </React.StrictMode>,
-  document.getElementById("root")
+	// <React.StrictMode>
+	<Router>
+		<Routes>
+			<Route path="/" element={<App />}>
+				<Route index element={<Home />} />
+				<Route path="blog" element={<Blog />} />
+				<Route path="profile" element={<Blog />} />
+				<Route path="admin" element={<Blog />} />
+				<Route path="chat" element={<Chat />} />
+				<Route path="preferences" element={<Preferences />} />
+			</Route>
+		</Routes>
+	</Router>,
+	// </React.StrictMode>,
+	document.getElementById("root")
 );
