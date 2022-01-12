@@ -29,9 +29,10 @@ const customTheme = createTheme({
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [avatarAlt, setAvatarAlt] = React.useState(" ");
   const divRef = React.useRef();
   const appContext = React.useContext(AppContext);
-  const { logout, userId } = appContext;
+  const { logout, userId, currentUser } = appContext;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -62,8 +63,12 @@ const Navbar = () => {
     if (userId) {
       console.log(userId);
       console.log("Make a toast pop up at this point");
+      console.log("currrent user NAv: ", currentUser);
+      setAvatarAlt(
+        `${currentUser.firstname} ${currentUser.lastname}`.toUpperCase()
+      );
     }
-  }, [userId]);
+  }, [currentUser]);
 
   return (
     <>
@@ -167,7 +172,7 @@ const Navbar = () => {
                         ref={divRef}
                       >
                         <Avatar
-                          alt="Jordan Alexander"
+                          alt={avatarAlt}
                           src="/static/images/avatar/2.jpg"
                         />
                       </IconButton>
