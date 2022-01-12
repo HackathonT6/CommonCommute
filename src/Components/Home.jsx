@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import AutoComplete from "../Components/AutoComplete";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -60,12 +61,14 @@ const Home = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
   return (
     <>
       <div className="page-wrapper">
         <div>Hello my Homepage</div>
         <div>Are we logged in? {userId ? "Yes" : "No"}</div>
         <Box sx={{ mt: 3 }}>
+          <AutoComplete />
           <form onSubmit={formik.handleSubmit}>
             <TextField
               id="modeOfT"
