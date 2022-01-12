@@ -97,7 +97,7 @@ const Chat = () => {
                       borderRadius: 3,
                       boxShadow: 3,
                     }}
-                    bgcolor="#6500c3"
+                    bgcolor="#335c67"
                     color="#fff"
                   >
                     <div>{message}</div>
@@ -125,7 +125,15 @@ const Chat = () => {
           bgcolor="#fff"
           className="scrollhost"
         >
-          <Box sx={{ m: 1, width: "100%" }}>
+          <Box
+            sx={{
+              m: 1,
+              width: "100%",
+              fill: (theme) => theme.palette.common.white,
+              stroke: (theme) => theme.palette.divider,
+              strokeWidth: 1,
+            }}
+          >
             <div>
               {chatMessages.map((message) => {
                 return (
@@ -137,7 +145,7 @@ const Chat = () => {
                       borderRadius: 3,
                       boxShadow: 3,
                     }}
-                    bgcolor="#6500c3"
+                    bgcolor="#335c67"
                     color="#fff"
                   >
                     <div>{message}</div>
@@ -163,6 +171,7 @@ const Chat = () => {
             value={userMessage}
           />
           <Button
+            id="appButton"
             variant="contained"
             color="success"
             sx={{ m: 1 }}

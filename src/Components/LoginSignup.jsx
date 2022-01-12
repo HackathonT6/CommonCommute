@@ -97,7 +97,12 @@ export default function FormDialog(props) {
 
   return (
     <div>
-      <Button variant="contained" color="success" onClick={handleClickOpen}>
+      <Button
+        id="appButton"
+        variant="contained"
+        color="success"
+        onClick={handleClickOpen}
+      >
         Login
       </Button>
       <Dialog open={open} onClose={handleClose}>
@@ -118,7 +123,6 @@ export default function FormDialog(props) {
                 value={signupEmail}
               />
               <TextField
-                autoFocus
                 margin="dense"
                 id="pwdFirst"
                 label="Password"
@@ -129,7 +133,6 @@ export default function FormDialog(props) {
                 value={signupPassword}
               />
               <TextField
-                autoFocus
                 margin="dense"
                 id="pwdSecond"
                 label="Verify Password"
@@ -146,7 +149,6 @@ export default function FormDialog(props) {
                 }
               />
               <TextField
-                autoFocus
                 margin="dense"
                 id="firstName"
                 label="First Name"
@@ -157,7 +159,6 @@ export default function FormDialog(props) {
                 value={signupFirstName}
               />
               <TextField
-                autoFocus
                 margin="dense"
                 id="lastName"
                 label="Last Name"
@@ -168,7 +169,6 @@ export default function FormDialog(props) {
                 value={signupLastName}
               />
               <TextField
-                autoFocus
                 margin="dense"
                 id="telNumber"
                 label="Telephone Number"
@@ -180,8 +180,11 @@ export default function FormDialog(props) {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
+              <Button onClick={handleClose} id="appButton">
+                Cancel
+              </Button>
               <Button
+                id="appButton"
                 onClick={handleSignupSubmit}
                 disabled={signupPassword !== passwordTwo}
               >
@@ -205,7 +208,6 @@ export default function FormDialog(props) {
                 value={loginEmail}
               />
               <TextField
-                autoFocus
                 margin="dense"
                 id="pwdFirst"
                 label="Password"
@@ -218,7 +220,9 @@ export default function FormDialog(props) {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleLogin}>Login</Button>
+              <Button onClick={handleLogin} id="appButton">
+                Login
+              </Button>
             </DialogActions>
           </>
         )}

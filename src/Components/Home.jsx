@@ -8,9 +8,6 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 const validationSchema = yup.object({
-  location: yup
-    .string("Enter your location")
-    .required("Starting location is required."),
   destination: yup
     .string("Enter your destination")
     .required("A destination is required for us to help you."),
@@ -51,8 +48,7 @@ const Home = () => {
 
   const formik = useFormik({
     initialValues: {
-      location: "Please search for your location here",
-      destination: "Please search for your destination here",
+      destination: "",
       modeOfT: "Scooter",
     },
     validationSchema: validationSchema,
@@ -86,20 +82,10 @@ const Home = () => {
             </TextField>
             <TextField
               fullWidth
-              id="location"
-              name="location"
-              label="Location"
-              sx={{ my: 1.5, width: "90%" }}
-              value={formik.values.location}
-              onChange={formik.handleChange}
-              error={formik.touched.location && Boolean(formik.errors.location)}
-              helperText={formik.touched.location && formik.errors.location}
-            />
-            <TextField
-              fullWidth
               id="destination"
               name="destination"
               label="Destination"
+              placeholder="Please search for your destination here"
               sx={{ my: 1.5, width: "90%" }}
               value={formik.values.destination}
               onChange={formik.handleChange}
@@ -110,7 +96,13 @@ const Home = () => {
                 formik.touched.destination && formik.errors.destination
               }
             />
-            <Button color="primary" variant="contained" fullWidth type="submit">
+            <Button
+              id="appButton"
+              color="primary"
+              variant="contained"
+              fullWidth
+              type="submit"
+            >
               Submit
             </Button>
           </form>

@@ -17,6 +17,7 @@ const ModalNav = () => {
   return (
     <div className="modal-menu">
       <Button
+        id="appButton"
         variant="contained"
         color="success"
         size="small"
@@ -28,6 +29,7 @@ const ModalNav = () => {
         Login
       </Button>
       <Button
+        id="appButton"
         variant="contained"
         color="success"
         size="small"

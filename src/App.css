@@ -3,12 +3,22 @@
   background-color: #fbfbf8;
 }
 
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  color: #6500c3;
+  color: rgb(49, 66, 61);
+  animation: fadeInAnimation ease 0.5s;
 }
 
 .together {
@@ -44,4 +54,17 @@
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-color: transparent transparent; /*just hides the scrollbar for firefox */
+}
+
+#appButton {
+  background-color: #335c67;
+  color: white;
+}
+
+#appButton:hover {
+  background-color: rgb(49, 66, 61);
+}
+
+#singleChatMessage {
+  animation: fadeInAnimation ease 0.5s;
 }

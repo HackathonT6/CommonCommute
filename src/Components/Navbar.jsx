@@ -20,7 +20,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const customTheme = createTheme({
   palette: {
     secondary: {
-      main: "#6500c3",
+      main: "#C6D8D3",
       contrastText: "#fff ",
     },
   },
@@ -130,6 +130,7 @@ const Navbar = () => {
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 <Link to="" style={{ textDecoration: "none" }}>
                   <Button
+                    id="appButton"
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, mx: 1, color: "white", display: "block" }}
                     variant="contained"
@@ -143,6 +144,7 @@ const Navbar = () => {
                   <>
                     <Link to="chat" style={{ textDecoration: "none" }}>
                       <Button
+                        id="appButton"
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, mx: 1, color: "white", display: "block" }}
                         variant="contained"
