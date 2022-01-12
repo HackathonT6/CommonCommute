@@ -1,7 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
+import { Box, TextField, Autocomplete, Typography } from "@mui/material";
 import _debounce from "lodash/debounce";
 import axios from "axios";
 
@@ -20,14 +18,17 @@ const AutoComplete = () => {
 
   const handleDebounceFunction = async (inputValue) => {
     try {
-      const myQuery = inputValue;
+      if (inputValue.length > 0) {
+        const myQuery = inputValue;
 
-      const response = await axios.get(
-        ` https://api.tomtom.com/search/2/search/${myQuery}.json?limit=${searchObject.limit}&lat=37.337&lon=-121.89&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=g1gbw2nKiP2IVIli2AsKNICCYL2qIoc5`
-      );
+        const response = await axios.get(
+          ` https://api.tomtom.com/search/2/search/${myQuery}.json?limit=${searchObject.limit}&lat=37.337&lon=-121.89&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=g1gbw2nKiP2IVIli2AsKNICCYL2qIoc5`
+        );
 
-      setOptions(response.data.results);
-      console.log(response.data.results);
+        setOptions(response.data.results);
+        console.log(response.data.results);
+      }
+      // Do nothing?
     } catch (err) {
       alert(err);
     }
@@ -49,47 +50,41 @@ const AutoComplete = () => {
 
   return (
     <>
-      <Box className="page-wrapper">
-        <Autocomplete
-          id="country-select-demo"
-          value={destinationSelection}
-          onChange={(event, newValue) => {
-            setDestinationSelection(newValue);
-          }}
-          sx={{ width: "100%" }}
-          options={options}
-          autoHighlight
-          getOptionLabel={(option) =>
-            `${option.address.freeformAddress} (${option.address.country})`
-          }
-          renderOption={(props, option) => (
-            <Box
-              component="li"
-              sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-              {...props}
-              key={option.distance}
-            >
-              {option.address.freeformAddress} ({option.address.country})
-            </Box>
-          )}
-          renderInput={(params) => (
-            <TextField
-              id="destination"
-              name="destination"
-              label="Destination"
-              sx={{ my: 1.5 }}
-              value={destination}
-              onChange={handleChangeDestination}
-              fullWidth
-              {...params}
-              label="Choose a destination"
-              inputProps={{
-                ...params.inputProps,
-              }}
-            />
-          )}
-        />
-      </Box>
+      <Typography align="center" variant="h5" gutterBottom>
+        Where are you going?
+      </Typography>
+      <Autocomplete
+        id="country-select-demo"
+        sx={{ m: 1 }}
+        value={destinationSelection}
+        onChange={(event, newValue) => {
+          setDestinationSelection(newValue);
+        }}
+        options={options}
+        autoHighlight
+        getOptionLabel={(option) =>
+          `${option.address.freeformAddress} (${option.address.country})`
+        }
+        renderOption={(props, option) => (
+          <Box component="li" {...props} key={option.distance}>
+            {option.address.freeformAddress} ({option.address.country})
+          </Box>
+        )}
+        renderInput={(params) => (
+          <TextField
+            id="destination"
+            name="destination"
+            label="Destination"
+            value={destination}
+            onChange={handleChangeDestination}
+            {...params}
+            label="Choose a destination"
+            inputProps={{
+              ...params.inputProps,
+            }}
+          />
+        )}
+      />
     </>
   );
 };

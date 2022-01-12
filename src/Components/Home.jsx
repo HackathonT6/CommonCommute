@@ -1,17 +1,12 @@
 import React from "react";
 import AppContext from "../Context/AppContext";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import { TextField, MenuItem, Box, Button, Typography } from "@mui/material";
 import AutoComplete from "../Components/AutoComplete";
+import TripDateSelect from "../Components/TripDateSelect";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 const validationSchema = yup.object({
-  destination: yup
-    .string("Enter your destination")
-    .required("A destination is required for us to help you."),
   modeOfT: yup.string("Enter your pet type").required("Pet type is required"),
 });
 
@@ -49,7 +44,6 @@ const Home = () => {
 
   const formik = useFormik({
     initialValues: {
-      destination: "",
       modeOfT: "Scooter",
     },
     validationSchema: validationSchema,
@@ -63,8 +57,12 @@ const Home = () => {
       <div className="page-wrapper">
         <div>Hello my Homepage</div>
         <div>Are we logged in? {userId ? "Yes" : "No"}</div>
-        <Box sx={{ mt: 3 }}>
+        <Box sx={{ my: 3, width: "85%" }}>
           <AutoComplete />
+          <TripDateSelect />
+          <Typography align="center" variant="h5" gutterBottom sx={{ mt: 1 }}>
+            How do you plan to get around?
+          </Typography>
           <form onSubmit={formik.handleSubmit}>
             <TextField
               id="modeOfT"
@@ -75,7 +73,7 @@ const Home = () => {
               onChange={formik.handleChange}
               error={formik.touched.modeOfT && Boolean(formik.errors.modeOfT)}
               helperText={formik.touched.modeOfT && formik.errors.modeOfT}
-              sx={{ width: "90%" }}
+              sx={{ m: 1, width: "100%" }}
             >
               {modeOfTArray.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -83,22 +81,6 @@ const Home = () => {
                 </MenuItem>
               ))}
             </TextField>
-            <TextField
-              fullWidth
-              id="destination"
-              name="destination"
-              label="Destination"
-              placeholder="Please search for your destination here"
-              sx={{ my: 1.5, width: "90%" }}
-              value={formik.values.destination}
-              onChange={formik.handleChange}
-              error={
-                formik.touched.destination && Boolean(formik.errors.destination)
-              }
-              helperText={
-                formik.touched.destination && formik.errors.destination
-              }
-            />
             <Button
               id="appButton"
               color="primary"
@@ -111,9 +93,6 @@ const Home = () => {
           </form>
         </Box>
         <div onClick={homeToast}>Click me for custom home-page toast!</div>
-        {/* <Box sx={{ m: 2 }}>
-          <AutoComplete />
-        </Box> */}
       </div>
     </>
   );
