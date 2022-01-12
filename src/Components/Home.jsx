@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import AutoComplete from "../Components/AutoComplete";
 
 const validationSchema = yup.object({
   location: yup
