@@ -118,7 +118,7 @@ const Navbar = () => {
                   {userId ? (
                     <Link to="chat" style={{ textDecoration: "none" }}>
                       <MenuItem onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">Chat</Typography>
+                        <Typography textAlign="center">Group Chat</Typography>
                       </MenuItem>
                     </Link>
                   ) : null}
@@ -155,7 +155,7 @@ const Navbar = () => {
                         variant="contained"
                         color="success"
                       >
-                        Chat
+                        Group Chat
                       </Button>
                     </Link>
                   </>
@@ -165,7 +165,7 @@ const Navbar = () => {
               <Box sx={{ flexGrow: 0 }}>
                 {userId ? (
                   <>
-                 <Notifications /> 
+                    <Notifications />
                     <Tooltip title="Open settings">
                       <IconButton
                         onClick={handleOpenUserMenu}

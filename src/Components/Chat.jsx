@@ -1,6 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import { Box, Button, Typography } from "@mui/material";
 import AppContext from "../Context/AppContext";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import axios from "axios";
@@ -24,12 +23,22 @@ const Chat = () => {
   const scrollRef = React.useRef(null);
   const mobileScrollRef = React.useRef(null);
 
+  const chatToast = () => {
+    setState((prev) => ({
+      ...prev,
+      toastText: "Welcome to the group channel!",
+    }));
+    displayToast();
+  };
+
   React.useEffect(() => {
     let socket = connectChatServer();
 
     socket.on("message", (text) => {
       setChatMessages((prev) => [...prev, text]);
     });
+
+    chatToast();
 
     return () => {
       socket.disconnect();
@@ -48,11 +57,6 @@ const Chat = () => {
     }
   }, [chatMessages]);
 
-  const chatToast = () => {
-    setState((prev) => ({ ...prev, toastText: "Chatty Toast" }));
-    displayToast();
-  };
-
   const handleMessage = (e) => {
     setUserMessage(e.target.value);
   };
@@ -67,8 +71,9 @@ const Chat = () => {
   return (
     <>
       <div className="page-wrapper">
-        <div>Welcome to the Chat</div>
-        <div>Are we logged in? {userId ? "Yes" : "No"}</div>
+        <Typography align="center" variant="h6" gutterBottom>
+          Welcome to our group chat!
+        </Typography>
         <Box
           sx={{
             width: "50%",
@@ -180,9 +185,6 @@ const Chat = () => {
             Send
           </Button>
         </Box>
-        <div onClick={chatToast}>
-          Click me to trigger a custom Toast for the Chat
-        </div>
       </div>
     </>
   );

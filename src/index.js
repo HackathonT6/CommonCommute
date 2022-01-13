@@ -17,7 +17,7 @@ ReactDOM.render(
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
         <Route path="blog" element={<Blog />} />
-        <Route path="profile" element={<Blog />} />
+        <Route path="profile" element={<Preferences />} />
         <Route path="admin" element={<Blog />} />
         <Route path="chat" element={<Chat />} />
         <Route path="trip" element={<TripDetails />} />
@@ -26,7 +26,5 @@ ReactDOM.render(
     </Routes>
   </Router>,
   // </React.StrictMode>,
-  document.getElementById("root"))
-
-
-
+  document.getElementById("root")
+);

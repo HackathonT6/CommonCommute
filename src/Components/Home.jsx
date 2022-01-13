@@ -33,7 +33,10 @@ const Home = () => {
   let navigate = useNavigate();
 
   const homeToast = () => {
-    setState((prev) => ({ ...prev, toastText: "Homey Toast" }));
+    setState((prev) => ({
+      ...prev,
+      toastText: "Come and plan a trip with us!",
+    }));
     displayToast();
   };
 
@@ -48,8 +51,12 @@ const Home = () => {
       `/trip/?lat=${formObject.destinationSelection.position.lat}&lon=${formObject.destinationSelection.position.lon}&start=${formatStart}&end=${formatEnd}&mode=${formObject.modeTransportation}&museums=${formObject.museums}&restaurants=${formObject.restaurants}&parks=${formObject.parks}&livemusic=${formObject.livemusic}&festivals=${formObject.festivals}&gyms=${formObject.gyms}&freeform=${formObject.destinationSelection.address.freeformAddress}`,
       { replace: true }
     );
-    alert(JSON.stringify(formObject));
+    console.log(formObject);
   };
+
+  React.useEffect(() => {
+    homeToast();
+  }, []);
 
   return (
     <>
@@ -92,7 +99,6 @@ const Home = () => {
             Let's do this, To-Get-Ther!
           </Button>
         </Box>
-        <div onClick={homeToast}>Click me for custom home-page toast!</div>
       </div>
     </>
   );
