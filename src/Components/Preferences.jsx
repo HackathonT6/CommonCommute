@@ -6,28 +6,32 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { v4 as uuidv4 } from "uuid";
+import AppContext from "../Context/AppContext";
+import axios from "axios";
 
 const Preferences = () => {
+	const appContext = React.useContext(AppContext);
+	const { header } = appContext;
 	const [prefGroupNum, setPrefGroupNum] = React.useState(0);
-	const dbPrefs = {
-		Music: 0,
-		Movies: 0,
-		History: 0,
-		Politics: 0,
-		PC: 0,
-		Foreign_languages: 0,
-		Art_exhibitions: 0,
-		Religion: 0,
-		Countryside: 0,
-		outdoors: 0,
-		Dancing: 0,
-		Musical_instruments: 0,
-		Shopping: 0,
-		Science_and_technology: 0,
-		Theatre: 0,
-		Adrenaline_sports: 0,
-	}; //!!!!!!!!!! will be changed to get data from DB
-	const [prefs, setPrefs] = React.useState({});
+	const emptyPrefs = {
+		Music: null,
+		Movies: null,
+		History: null,
+		Politics: null,
+		PC: null,
+		Foreign_languages: null,
+		Art_exhibitions: null,
+		Religion: null,
+		Countryside: null,
+		outdoors: null,
+		Dancing: null,
+		Musical_instruments: null,
+		Shopping: null,
+		Science_and_technology: null,
+		Theatre: null,
+		Adrenaline_sports: null,
+	};
+	const [prefs, setPrefs] = React.useState(emptyPrefs);
 
 	const handleChange = (e) => {
 		setPrefs({
@@ -36,14 +40,42 @@ const Preferences = () => {
 		});
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		console.log("prefs: ", prefs);
+		try {
+			const response = await axios.put(
+				"http://localhost:8000/user/updatePreferences",{preferences : prefs},
+				{
+					headers: header,
+				}
+			);
+			console.log(response.data);
+		} catch (err) {
+			alert(`couldnt update prefs: ${err}`);
+		}
+
 	};
 
 	React.useEffect(() => {
-		setPrefs(dbPrefs);
-	}, []);
+		console.log("!!!header: ",header)
+		header &&
+		(async () => {
+			try {
+				const response = await axios.get(
+					"http://localhost:8000/user/getUserPrefs",
+					{
+						headers: header,
+					}
+				);
+				console.log(response.data);
+
+				response.data && setPrefs(response.data) ;
+			} catch (err) {
+				alert(`couldnt get prefs: ${err}`);
+			}
+		})();
+	}, [header]);
 
 	const customTheme = createTheme({
 		palette: {
@@ -65,7 +97,7 @@ const Preferences = () => {
 				<div className="pref-form-container">
 					<div style={{ flexBasis: "10%", alignSelf: "center" }}>
 						{prefGroupNum !== 0 ? (
-							<Button onClick={() => setPrefGroupNum((prev) => prev - 5)}>
+							<Button onClick={() => setPrefGroupNum((prev) => prev - 8)}>
 								<ArrowBackIosIcon />
 							</Button>
 						) : (
@@ -79,7 +111,7 @@ const Preferences = () => {
 						<form onSubmit={handleSubmit}>
 							{prefs &&
 								Object.keys(prefs)
-									.slice(prefGroupNum, prefGroupNum + 4)
+									.slice(prefGroupNum, prefGroupNum + 8)
 									.map((key) => {
 										return (
 											<>
@@ -128,8 +160,8 @@ const Preferences = () => {
 						</form>
 					</Box>
 					<div style={{ flexBasis: "10%", alignSelf: "center" }}>
-						{prefGroupNum < 10 ? (
-							<Button onClick={() => setPrefGroupNum((prev) => prev + 5)}>
+						{prefGroupNum < 8 ? (
+							<Button onClick={() => setPrefGroupNum((prev) => prev + 8)}>
 								<ArrowForwardIosIcon />
 							</Button>
 						) : (
@@ -143,7 +175,6 @@ const Preferences = () => {
 };
 
 export default Preferences;
-
 
 //backend key.replace
 //setprefs route

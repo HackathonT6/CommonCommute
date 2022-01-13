@@ -9,7 +9,7 @@ import Toast from "./Components/Toast";
 import Landing from "./Components/Landing";
 
 export default function App() {
-  const { register, login, logout, userId,getUserById,currentUser} = useUser();
+  const { register, login, logout, userId,getUserById,currentUser,header} = useUser();
   const { displayToast, hideToast, openToast } = useToast();
   const [state, setState] = React.useState({
     formSelect: true,
@@ -29,7 +29,8 @@ export default function App() {
 				hideToast,
 				openToast,
 				currentUser,
-        getUserById
+        getUserById,
+        header
 			}}
 		>
 			<div className="App">
