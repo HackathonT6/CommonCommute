@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Button, Typography, IconButton, Tooltip } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import UserModal from "../Components/UserModal";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import tt from "@tomtom-international/web-sdk-maps";
 import axios from "axios";
@@ -19,6 +20,9 @@ const TripDetails = () => {
   const [mapZoom, setMapZoom] = React.useState(13);
   const [map, setMap] = React.useState({});
   const [museums, setMuseums] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   React.useEffect(() => {
     (async () => {
@@ -70,9 +74,19 @@ const TripDetails = () => {
 
   return (
     <Box className="page-wrapper">
-      <Typography align="center" variant="h5" sx={{ mb: 4 }}>
-        We hope you have a great trip to {tripObject.freeform}
-      </Typography>
+      <Box component="span" sx={{ m: 2 }}>
+        <Typography align="center" variant="h5">
+          We hope you have a great trip to {tripObject.freeform}
+          {/* <Button
+            variant="contained"
+            color="success"
+            onClick={backHome}
+            sx={{ mx: 5 }}
+          >
+            Back
+          </Button> */}
+        </Typography>
+      </Box>
       <Box
         sx={{
           display: "flex",
@@ -165,7 +179,14 @@ const TripDetails = () => {
           </Box>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
           <Typography
             align="center"
             variant="h6"
@@ -174,8 +195,8 @@ const TripDetails = () => {
             There are 4 users nearby!:
           </Typography>
           <Box>
-            <Tooltip title="User">
-              <IconButton>
+            <Tooltip title="Jordan">
+              <IconButton id="User1" onClick={handleOpen}>
                 <AccessibilityNewIcon
                   sx={{
                     m: 1,
@@ -189,7 +210,7 @@ const TripDetails = () => {
               </IconButton>
             </Tooltip>
             <Tooltip title="User">
-              <IconButton>
+              <IconButton id="User2" onClick={handleOpen}>
                 <AccessibilityNewIcon
                   sx={{
                     m: 1,
@@ -203,7 +224,7 @@ const TripDetails = () => {
               </IconButton>
             </Tooltip>
             <Tooltip title="User">
-              <IconButton>
+              <IconButton id="User3" onClick={handleOpen}>
                 <AccessibilityNewIcon
                   sx={{
                     m: 1,
@@ -217,7 +238,7 @@ const TripDetails = () => {
               </IconButton>
             </Tooltip>
             <Tooltip title="User">
-              <IconButton>
+              <IconButton id="User4" onClick={handleOpen}>
                 <AccessibilityNewIcon
                   sx={{
                     m: 1,
@@ -233,14 +254,11 @@ const TripDetails = () => {
           </Box>
         </Box>
       </Box>
-      <Button
-        variant="contained"
-        color="success"
-        onClick={backHome}
-        sx={{ m: 2 }}
-      >
-        Back
-      </Button>
+      <UserModal
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+      />
     </Box>
   );
 };

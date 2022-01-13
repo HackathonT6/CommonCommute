@@ -8,9 +8,10 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const UserModal = () => {
+const UserModal = (props) => {
   const appContext = useContext(AppContext);
   const { userId, currentUser } = appContext;
+  const { open, handleOpen, handleClose } = props;
 
   const style = {
     position: "absolute",
@@ -23,13 +24,9 @@ const UserModal = () => {
     boxShadow: 24,
     p: 4,
   };
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -43,12 +40,27 @@ const UserModal = () => {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              {currentUser.firstname}
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              USER INFO HERE
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <Typography
+                id="transition-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                {currentUser.firstname}
+              </Typography>
+              <Typography id="transition-modal-description" sx={{ m: 2 }}>
+                The user biography goes here!
+              </Typography>
+              <Button variant="contained" color="success">
+                Send a message to this user
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
