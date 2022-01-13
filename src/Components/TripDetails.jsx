@@ -105,8 +105,8 @@ const TripDetails = () => {
             We see you are mostly traveling by {tripObject.mode}
           </Typography>
           <Typography align="center" variant="h6" gutterBottom>
-            Here are some recommended apps that are popular for obtaining one at
-            your destination:
+            Here are some recommended apps that are popular for obtaining{" "}
+            {tripObject.mode + "s"} at your destination:
           </Typography>
           <Box>
             <Tooltip title="Bonanza">
