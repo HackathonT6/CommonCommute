@@ -45,7 +45,7 @@ const Home = () => {
       "MM-dd-yyyy"
     );
     navigate(
-      `/trip/?lat=${formObject.destinationSelection.position.lat}?lon=${formObject.destinationSelection.position.lon}?start=${formatStart}?end=${formatEnd}?mode=${formObject.modeTransportation}?museums=${formObject.museums}?restaurants=${formObject.restaurants}?parks=${formObject.parks}?livemusic=${formObject.livemusic}?festivals=${formObject.festivals}?gyms=${formObject.gyms}`,
+      `/trip/?lat=${formObject.destinationSelection.position.lat}&lon=${formObject.destinationSelection.position.lon}&start=${formatStart}&end=${formatEnd}&mode=${formObject.modeTransportation}&museums=${formObject.museums}&restaurants=${formObject.restaurants}&parks=${formObject.parks}&livemusic=${formObject.livemusic}&festivals=${formObject.festivals}&gyms=${formObject.gyms}&freeform=${formObject.destinationSelection.address.freeformAddress}`,
       { replace: true }
     );
     alert(JSON.stringify(formObject));
@@ -54,7 +54,9 @@ const Home = () => {
   return (
     <>
       <div className="page-wrapper">
-        <div>Hello my Homepage</div>
+        <Typography align="center" variant="h4" gutterBottom>
+          Plan your trip with us!
+        </Typography>
         <Box sx={{ my: 3, width: "85%" }}>
           <AutoComplete
             destinationSelection={formObject.destinationSelection}
@@ -87,7 +89,7 @@ const Home = () => {
             fullWidth
             onClick={handleSubmit}
           >
-            Submit
+            Let's do this, To-Get-Ther!
           </Button>
         </Box>
         <div onClick={homeToast}>Click me for custom home-page toast!</div>

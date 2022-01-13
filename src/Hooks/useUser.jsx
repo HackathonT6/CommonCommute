@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 
-
 const useUser = () => {
   const [userId, setUserId] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState(null);
@@ -26,40 +25,37 @@ const useUser = () => {
         "http://localhost:8000/user/login",
         userCredentials
       );
-      alert(`Login successful: ${response.data.message}`);
-			console.log(response.data);
-      
+      alert(`${response.data.message}`);
+      console.log(response.data);
+
       setUserId(response.data.userData._id);
       setCurrentUser({ ...response.data.userData });
       const header = {
-				authorization: `Bearer ${response.data.token}`,
-			};
+        authorization: `Bearer ${response.data.token}`,
+      };
       setHeader(header);
-
     } catch (err) {
       alert(`Login unsuccessful: ${err.response.data.message}`);
     }
   };
 
-// const getUserById = async (userId) => {
-// 	try {
-// 		const response = await axios.get(`http://localhost:8000/user/getUserById/${userId}`, {
-// 			
-// 		});
-// 		alert(`Login successful: ${response.data.message}`);
-// 		console.log(response.data);
-//     setCurrentUser(response.data);
-// 	} catch (err) {
-// 		alert(`Login unsuccessful: ${err.response.data.message}`);
-// 	}
-// };
-
-
+  // const getUserById = async (userId) => {
+  // 	try {
+  // 		const response = await axios.get(`http://localhost:8000/user/getUserById/${userId}`, {
+  //
+  // 		});
+  // 		alert(`Login successful: ${response.data.message}`);
+  // 		console.log(response.data);
+  //     setCurrentUser(response.data);
+  // 	} catch (err) {
+  // 		alert(`Login unsuccessful: ${err.response.data.message}`);
+  // 	}
+  // };
 
   const logout = () => {
     setUserId(null);
   };
-  return { register, login, logout, userId,currentUser};
+  return { register, login, logout, userId, currentUser };
 };
 
 export default useUser;
