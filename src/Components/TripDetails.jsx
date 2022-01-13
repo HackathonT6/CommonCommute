@@ -7,6 +7,7 @@ import axios from "axios";
 import AdbRoundedIcon from "@mui/icons-material/AdbRounded";
 import BlenderRoundedIcon from "@mui/icons-material/BlenderRounded";
 import ConfirmationNumberRoundedIcon from "@mui/icons-material/ConfirmationNumberRounded";
+import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
 
 const TripDetails = () => {
   const [searchParams] = useSearchParams();
@@ -72,7 +73,14 @@ const TripDetails = () => {
       <Typography align="center" variant="h5" sx={{ mb: 4 }}>
         We hope you have a great trip to {tripObject.freeform}
       </Typography>
-      <Box sx={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
         <Box>
           <Box
             ref={mapElement}
@@ -89,10 +97,6 @@ const TripDetails = () => {
             flexDirection: "column",
           }}
         >
-          <Typography align="center" variant="h5" gutterBottom>
-            Details
-          </Typography>
-
           <Typography
             align="center"
             variant="h6"
@@ -169,6 +173,64 @@ const TripDetails = () => {
           >
             There are 4 users nearby!:
           </Typography>
+          <Box>
+            <Tooltip title="User">
+              <IconButton>
+                <AccessibilityNewIcon
+                  sx={{
+                    m: 1,
+                    width: 50,
+                    height: 50,
+                    bgcolor: "#feefc3",
+                    borderRadius: 3,
+                  }}
+                  alt="Ohhh"
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="User">
+              <IconButton>
+                <AccessibilityNewIcon
+                  sx={{
+                    m: 1,
+                    width: 50,
+                    height: 50,
+                    bgcolor: "#feefc3",
+                    borderRadius: 3,
+                  }}
+                  alt="Ohhh"
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="User">
+              <IconButton>
+                <AccessibilityNewIcon
+                  sx={{
+                    m: 1,
+                    width: 50,
+                    height: 50,
+                    bgcolor: "#feefc3",
+                    borderRadius: 3,
+                  }}
+                  alt="Ohhh"
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="User">
+              <IconButton>
+                <AccessibilityNewIcon
+                  sx={{
+                    m: 1,
+                    width: 50,
+                    height: 50,
+                    bgcolor: "#feefc3",
+                    borderRadius: 3,
+                  }}
+                  alt="Ohhh"
+                />
+              </IconButton>
+            </Tooltip>
+          </Box>
         </Box>
       </Box>
       <Button
