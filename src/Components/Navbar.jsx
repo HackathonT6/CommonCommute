@@ -18,6 +18,7 @@ import LoginSignup from "../Components/LoginSignup";
 import AppContext from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Notifications from "./Notifications";
 
 const customTheme = createTheme({
   palette: {
@@ -164,10 +165,11 @@ const Navbar = () => {
               <Box sx={{ flexGrow: 0 }}>
                 {userId ? (
                   <>
+                 <Notifications /> 
                     <Tooltip title="Open settings">
                       <IconButton
                         onClick={handleOpenUserMenu}
-                        sx={{ p: 0 }}
+                        sx={{ p: 0, ml: 2 }}
                         ref={divRef}
                       >
                         <Avatar
