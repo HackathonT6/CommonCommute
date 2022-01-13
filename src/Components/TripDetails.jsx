@@ -1,9 +1,12 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, IconButton, Tooltip } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import tt from "@tomtom-international/web-sdk-maps";
 import axios from "axios";
+import AdbRoundedIcon from "@mui/icons-material/AdbRounded";
+import BlenderRoundedIcon from "@mui/icons-material/BlenderRounded";
+import ConfirmationNumberRoundedIcon from "@mui/icons-material/ConfirmationNumberRounded";
 
 const TripDetails = () => {
   const [searchParams] = useSearchParams();
@@ -101,6 +104,48 @@ const TripDetails = () => {
             Here are some recommended apps that are popular for obtaining one at
             your destination:
           </Typography>
+          <Box>
+            <Tooltip title="Bonanza">
+              <IconButton>
+                <AdbRoundedIcon
+                  sx={{
+                    m: 1,
+                    width: 50,
+                    height: 50,
+                    bgcolor: "#af8fe9",
+                    borderRadius: 3,
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Picardo">
+              <IconButton>
+                <BlenderRoundedIcon
+                  sx={{
+                    m: 1,
+                    width: 50,
+                    height: 50,
+                    bgcolor: "#f47174",
+                    borderRadius: 3,
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Janeway">
+              <IconButton>
+                <ConfirmationNumberRoundedIcon
+                  sx={{
+                    m: 1,
+                    width: 50,
+                    height: 50,
+                    bgcolor: "#feefc3",
+                    borderRadius: 3,
+                  }}
+                  alt="Ohhh"
+                />
+              </IconButton>
+            </Tooltip>
+          </Box>
           <Typography align="center" variant="h6" gutterBottom>
             Your availability is from {tripObject.start} to {tripObject.end}
           </Typography>
@@ -117,7 +162,13 @@ const TripDetails = () => {
         </Box>
 
         <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
-          Third Column
+          <Typography
+            align="center"
+            variant="h6"
+            sx={{ color: "#6500c3", m: 1 }}
+          >
+            There are 4 users nearby!:
+          </Typography>
         </Box>
       </Box>
       <Button
