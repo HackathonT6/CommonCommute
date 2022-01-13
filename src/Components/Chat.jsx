@@ -18,7 +18,7 @@ const connectChatServer = () => {
 
 const Chat = () => {
   const appContext = React.useContext(AppContext);
-  const { userId, setState, displayToast } = appContext;
+  const { userId, setState, displayToast, currentUser } = appContext;
   const [userMessage, setUserMessage] = React.useState("");
   const [chatMessages, setChatMessages] = React.useState([]);
   const scrollRef = React.useRef(null);
@@ -58,7 +58,7 @@ const Chat = () => {
   };
 
   const handleSend = () => {
-    const chatMessage = `${userId}: ${userMessage}`;
+    const chatMessage = `${currentUser.firstname}: ${userMessage}`;
     let socket = connectChatServer();
     socket.emit("message", chatMessage);
     setUserMessage("");

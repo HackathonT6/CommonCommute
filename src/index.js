@@ -7,6 +7,7 @@ import App from "./App";
 import Home from "./Components/Home";
 import Blog from "./Components/Blog";
 import Chat from "./Components/Chat";
+import TripDetails from "./Components/TripDetails";
 
 ReactDOM.render(
   // <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Route path="profile" element={<Blog />} />
         <Route path="admin" element={<Blog />} />
         <Route path="chat" element={<Chat />} />
+        <Route path="trip" element={<TripDetails />} />
       </Route>
     </Routes>
   </Router>,

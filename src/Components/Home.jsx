@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import AppContext from "../Context/AppContext";
 import { Box, Button, Typography } from "@mui/material";
+import { DateTime } from "luxon";
 import AutoComplete from "../Components/AutoComplete";
 import TripDateSelect from "../Components/TripDateSelect";
 import ModeOfTransportation from "../Components/ModeOfTransportation";
 import DestinationInterests from "../Components/DestinationInterests";
+
 // import { useFormik } from "formik";
 // import * as yup from "yup";
 
@@ -17,8 +20,8 @@ const Home = () => {
   const { userId, displayToast, setState } = appContext;
   const [formObject, setFormObject] = React.useState({
     destinationSelection: null,
-    startDate: new Date("2021-12-16T21:11:54"),
-    endDate: new Date("2021-12-25T21:11:54"),
+    startDate: DateTime.now(),
+    endDate: DateTime.now().plus({ days: 7 }),
     modeTransportation: "Scooter",
     museums: false,
     restaurants: false,
@@ -27,6 +30,7 @@ const Home = () => {
     festivals: false,
     gyms: false,
   });
+  let navigate = useNavigate();
 
   const homeToast = () => {
     setState((prev) => ({ ...prev, toastText: "Homey Toast" }));
@@ -34,6 +38,16 @@ const Home = () => {
   };
 
   const handleSubmit = () => {
+    const formatStart = DateTime.fromISO(formObject.startDate).toFormat(
+      "MM-dd-yyyy"
+    );
+    const formatEnd = DateTime.fromISO(formObject.endDate).toFormat(
+      "MM-dd-yyyy"
+    );
+    navigate(
+      `/trip/?lat=${formObject.destinationSelection.position.lat}?lon=${formObject.destinationSelection.position.lon}?start=${formatStart}?end=${formatEnd}?mode=${formObject.modeTransportation}?museums=${formObject.museums}?restaurants=${formObject.restaurants}?parks=${formObject.parks}?livemusic=${formObject.livemusic}?festivals=${formObject.festivals}?gyms=${formObject.gyms}`,
+      { replace: true }
+    );
     alert(JSON.stringify(formObject));
   };
 

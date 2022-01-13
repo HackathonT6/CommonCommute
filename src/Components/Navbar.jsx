@@ -65,7 +65,6 @@ const Navbar = () => {
     if (userId) {
       console.log(userId);
       console.log("Make a toast pop up at this point");
-      console.log("currrent user NAv: ", currentUser);
       setAvatarAlt(
         `${currentUser.firstname} ${currentUser.lastname}`.toUpperCase()
       );
@@ -116,13 +115,11 @@ const Navbar = () => {
                     </MenuItem>
                   </Link>
                   {userId ? (
-                    <>
-                      <Link to="chat" style={{ textDecoration: "none" }}>
-                        <MenuItem onClick={handleCloseNavMenu}>
-                          <Typography textAlign="center">Chat</Typography>
-                        </MenuItem>
-                      </Link>
-                    </>
+                    <Link to="chat" style={{ textDecoration: "none" }}>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">Chat</Typography>
+                      </MenuItem>
+                    </Link>
                   ) : null}
                 </Menu>
               </Box>
@@ -219,9 +216,7 @@ const Navbar = () => {
                     </Menu>
                   </>
                 ) : (
-                  <>
-                    <LoginSignup closeUser={handleCloseUserMenu} />
-                  </>
+                  <LoginSignup closeUser={handleCloseUserMenu} />
                 )}
               </Box>
             </Toolbar>

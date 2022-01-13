@@ -32,7 +32,7 @@ const AutoComplete = (props) => {
   };
 
   const debounceFunction = React.useCallback(
-    _debounce(handleDebounceFunction, 1000),
+    _debounce(handleDebounceFunction, 700),
     []
   );
 

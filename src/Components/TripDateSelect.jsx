@@ -2,7 +2,6 @@ import React from "react";
 import DateAdapter from "@mui/lab/AdapterLuxon";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
-// import {LocalizationProvider, DesktopDatePicker, DateAdapter } from "@mui/lab"
 import { Typography, Box, TextField } from "@mui/material";
 
 const TripDateSelect = (props) => {
