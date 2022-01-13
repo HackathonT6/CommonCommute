@@ -66,10 +66,10 @@ const TripDetails = () => {
 
   return (
     <Box className="page-wrapper">
-      <Typography align="center" variant="h5" gutterBottom>
+      <Typography align="center" variant="h5" sx={{ mb: 4 }}>
         We hope you have a great trip to {tripObject.freeform}
       </Typography>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
         <Box>
           <Box
             ref={mapElement}
@@ -84,25 +84,16 @@ const TripDetails = () => {
             p: 1,
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            width: "40%",
           }}
         >
           <Typography align="center" variant="h5" gutterBottom>
             Details
           </Typography>
-          <Typography align="center" variant="h6" gutterBottom>
-            Your availability is from {tripObject.start} to {tripObject.end}
-          </Typography>
-          <Typography align="center" variant="h6" gutterBottom>
-            Your points of interest include:
-          </Typography>
-          <Box>{museums.length > 0 ? <>Hey</> : null}</Box>
+
           <Typography
             align="center"
             variant="h6"
-            gutterBottom
-            sx={{ color: "#6500c3" }}
+            sx={{ color: "#6500c3", m: 1 }}
           >
             We see you are mostly traveling by {tripObject.mode}
           </Typography>
@@ -110,6 +101,23 @@ const TripDetails = () => {
             Here are some recommended apps that are popular for obtaining one at
             your destination:
           </Typography>
+          <Typography align="center" variant="h6" gutterBottom>
+            Your availability is from {tripObject.start} to {tripObject.end}
+          </Typography>
+          <Typography align="center" variant="h6" gutterBottom>
+            Your points of interest include:
+          </Typography>
+          <Box>
+            {museums.length > 0
+              ? museums.map((poi) => {
+                  return <div>{poi.poi.name}</div>;
+                })
+              : null}
+          </Box>
+        </Box>
+
+        <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+          Third Column
         </Box>
       </Box>
       <Button
