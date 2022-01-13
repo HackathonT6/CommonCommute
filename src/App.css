@@ -68,3 +68,11 @@
 #singleChatMessage {
   animation: fadeInAnimation ease 0.5s;
 }
+
+
+.pref-form-container{
+  display: flex;
+  justify-content: space-between;
+  width:50%;
+  
+}
